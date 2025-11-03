@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Tarjeta de Cumpleaños Interactiva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="scene" aria-live="polite">
+    <div class="hint">Haz clic en la torta para abrir tu sorpresa</div>
+
+    <div
+      class="cake"
+      id="cake"
+      role="button"
+      aria-label="Abrir tarjeta de cumpleaños"
+      aria-controls="modal"
+      tabindex="0"
+    >
+      <div class="layer bottom"><div class="drip"></div></div>
+      <div class="layer middle"><div class="drip"></div></div>
+      <div class="layer top"><div class="drip"></div></div>
+      <div class="candle"></div>
+      <div class="flame" aria-hidden="true"></div>
+      <div class="plate" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+  <div class="card" id="modal" role="dialog" aria-modal="true" aria-labelledby="title">
+    <div class="card-inner" id="card">
+      <h2 class="title" id="title">¡Feliz Cumple, mi negra linda!</h2>
+      <p class="subtitle">Hoy celebramos tu luz, tu risa y lo increíble que eres</p>
+
+      <div class="flowers" aria-hidden="true">
+        <div class="flower">
+          <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+          <div class="center"></div><div class="leaf"></div>
+        </div>
+        <div class="flower">
+          <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+          <div class="center"></div><div class="leaf"></div>
+        </div>
+        <div class="flower">
+          <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+          <div class="center"></div><div class="leaf"></div>
+        </div>
+      </div>
+
+      <div class="message">
+        <p>Mi negra,</p>
+        <p>Hoy no podía dejar pasar el día sin escribirte algo.</p>
+        <p>No sé si aún recuerdas cuánto me alegra saber que cumples un año más, pero créeme, siempre lo tengo presente.</p>
+        <p>Quiero desearte un cumpleaños lleno de cosas buenas, de paz, de momentos que te saquen una sonrisa de esas que siempre me gustaron tanto.</p>
+        <p>Te mereces todo lo bonito que la vida pueda darte, porque incluso cuando no lo crees, eres una persona increíble.</p>
+        <p>Tal vez las cosas entre nosotros no salieron como esperábamos, pero quiero que sepas que sigo valorando todo lo que vivimos.</p>
+        <p>Aprendí mucho de ti —de tu forma de sentir, de cuidar, de querer— y aunque el tiempo pase, sigues teniendo un lugar especial en mi vida.</p>
+        <p>Ojalá este nuevo año te traiga todo lo que deseas.</p>
+        <p>Feliz cumpleaños, mi negra.</p>
+        <p>Con cariño,<br>Jhonny Plazasesamo</p>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="replay">Lanzar confeti</button>
+        <button class="btn secondary" id="toggle-audio" aria-pressed="false" aria-label="Activar sonido">🔊 Sonido</button>
+        <button class="btn secondary" id="close">Cerrar</button>
+      </div>
+      <p class="footer-note">Feliz cumpleañossss</p>
+    </div>
+  </div>
+
+  <!-- Música de fondo -->
+  <audio id="bgm" src="./Cumpleaños Feliz, La Vaca Lola Canciones Infantiles  Toy Cantando.mp3" preload="auto" loop playsinline></audio>
+
+  <!-- Tu lógica -->
+  <script src="./script.js" defer></script>
+</body>
+</html>

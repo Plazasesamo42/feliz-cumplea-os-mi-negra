@@ -1,0 +1,193 @@
+:root{
+  --bg:#fff6f8;
+  --primary:#ff73a6;
+  --secondary:#ffd166;
+  --choco:#7b4b2a;
+  --cream:#ffe3cf;
+  --shadow: rgba(0,0,0,.12);
+  --card:#ffffff;
+  --accent:#8ed1fc;
+  --leaf:#68b684;
+  --text:#3a2e2e;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #ffeef6 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 70%, #eef9ff 0%, transparent 60%),
+    var(--bg);
+  color:var(--text);
+  display:grid;
+  place-items:center;
+}
+
+.scene{
+  position:relative;
+  width:min(560px, 92vw);
+  height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Torta CSS */
+.cake{
+  position:relative;
+  width:260px;
+  height:220px;
+  cursor:pointer;
+  transform:translateY(-10px);
+  transition: transform .25s ease, filter .25s ease;
+  filter: drop-shadow(0 12px 20px var(--shadow));
+}
+.cake:hover{ transform: translateY(-14px) scale(1.02); }
+.cake:active{ transform: translateY(-8px) scale(0.99); }
+
+.plate{
+  position:absolute;
+  bottom:-8px;
+  left:50%;
+  transform:translateX(-50%);
+  width:280px;height:28px;border-radius:50%;
+  background: linear-gradient(#e8e8e8,#d6d6d6);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.08);
+}
+
+.layer{
+  position:absolute;
+  left:50%; transform:translateX(-50%);
+  width:240px; height:78px; border-radius:14px;
+  background:
+    linear-gradient(transparent 54px, var(--secondary) 54px, var(--secondary) 64px, transparent 64px),
+    radial-gradient(circle at 28px 12px, var(--choco) 28px, var(--cream) 29px);
+  background-size: 100% 100%, 60px 100px;
+  background-repeat: no-repeat, repeat;
+  background-position: 0 0, 30px 0;
+  box-shadow: 0 6px 0 rgba(0,0,0,.05);
+}
+.layer.bottom{ bottom:60px; }
+.layer.middle{ bottom:120px; transform: translateX(-50%) scale(.88); }
+.layer.top{ bottom:172px; transform: translateX(-50%) scale(.74); }
+
+/* Cobertura goteando */
+.drip{
+  position:absolute; top:-10px; left:0; right:0; height:30px;
+  background:
+    radial-gradient(18px 14px at 24px 14px, var(--cream) 98%, transparent 100%) 0 0/60px 30px repeat-x,
+    radial-gradient(18px 14px at 54px 8px, var(--cream) 98%, transparent 100%) 0 0/60px 30px repeat-x,
+    linear-gradient(var(--cream), var(--cream));
+  border-top-left-radius:14px; border-top-right-radius:14px;
+}
+
+/* Vela */
+.candle{
+  position:absolute;
+  left:50%; transform:translateX(-50%);
+  bottom:226px; width:16px; height:48px;
+  background: repeating-linear-gradient(45deg, #fd3a3a 0 6px, #ffa6a6 6px 12px);
+  border-radius:6px;
+  box-shadow: 0 2px 0 rgba(0,0,0,.08);
+}
+.flame{
+  position:absolute; left:50%; transform:translateX(-50%);
+  bottom:276px; width:18px; height:26px;
+  background: radial-gradient(closest-side, #ffd166 60%, #ff8c42 72%, transparent 73%);
+  filter: drop-shadow(0 0 6px #ffcf5a);
+  border-radius:50% 50% 50% 50%;
+  animation: flicker .9s infinite ease-in-out;
+}
+@keyframes flicker{
+  0%,100%{ transform: translateX(-50%) scale(1) }
+  50%{ transform: translateX(-50%) scale(1.08) }
+}
+
+.hint{
+  position:absolute; top:12px; left:50%; transform:translateX(-50%);
+  font-size:.95rem; opacity:.7;
+  background: #ffffffaa; padding:6px 10px; border-radius:8px; backdrop-filter: blur(4px);
+}
+
+/* Modal de carta */
+.backdrop{
+  position:fixed; inset:0; background: rgba(0,0,0,.25);
+  opacity:0; pointer-events:none; transition:opacity .25s ease;
+}
+.card{
+  position:fixed; inset:0; display:grid; place-items:center; pointer-events:none;
+}
+.card-inner{
+  width:min(560px, 92vw); max-height:80vh; overflow:auto;
+  background: var(--card);
+  border-radius:16px; padding:22px 22px 16px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.22);
+  transform: translateY(12px) scale(.96);
+  opacity:0; transition: transform .28s ease, opacity .28s ease;
+}
+body.open .backdrop{ opacity:1; pointer-events:auto; }
+body.open .card{ pointer-events:auto; }
+body.open .card-inner{ opacity:1; transform: translateY(0) scale(1); }
+
+.title{
+  margin:0 0 4px; font-size:1.8rem; color:#c23a6b;
+  text-align:center;
+}
+.subtitle{
+  margin:0 0 14px; text-align:center; color:#7a5b5b;
+}
+.message{
+  margin:0 auto 12px; line-height:1.6; font-size:1.05rem; max-width:42ch; text-align:center;
+}
+
+/* Flores decorativas */
+.flowers{
+  display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+  margin:14px 0 10px;
+}
+.flower{ position:relative; width:54px; height:54px; }
+.petal{
+  position:absolute; width:22px; height:32px; background: radial-gradient(circle at 30% 30%, #ffa4c2, #ff6fa3 70%);
+  border-radius:14px 14px 4px 14px;
+  transform-origin: 18px 26px;
+}
+.petal:nth-child(1){ transform: rotate(0deg) translate(18px, 0) }
+.petal:nth-child(2){ transform: rotate(72deg) translate(18px, 0) }
+.petal:nth-child(3){ transform: rotate(144deg) translate(18px, 0) }
+.petal:nth-child(4){ transform: rotate(216deg) translate(18px, 0) }
+.petal:nth-child(5){ transform: rotate(288deg) translate(18px, 0) }
+.center{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:16px; height:16px; background: radial-gradient(circle at 35% 35%, #ffe27a, #ffb703);
+  border-radius:50%;
+  box-shadow: 0 0 0 3px #fff6, 0 2px 4px rgba(0,0,0,.15);
+}
+.leaf{
+  position:absolute; width:12px; height:26px; background: linear-gradient(160deg, #9ad6b0, var(--leaf));
+  border-radius:8px 8px 8px 0; bottom:-6px; left:50%; transform:translateX(-50%) rotate(18deg);
+}
+
+.actions{
+  display:flex; gap:10px; justify-content:center; margin:8px 0 4px;
+}
+.btn{
+  border:0; padding:10px 14px; border-radius:10px; cursor:pointer;
+  background: linear-gradient(180deg, #ffd2e4, #ffb6d1);
+  color:#6b2f4a; font-weight:600; box-shadow: 0 6px 14px rgba(0,0,0,.12);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 18px rgba(0,0,0,.16); }
+.btn.secondary{ background: linear-gradient(180deg, #d8f0ff, #bfe5ff); color:#245670; }
+
+.footer-note{
+  text-align:center; font-size:.85rem; color:#7a6a6a; margin-top:4px;
+}
+
+/* Canvas de confeti */
+#confetti-canvas{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
